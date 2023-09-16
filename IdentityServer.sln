@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer.AuthServer", "IdentityServer.AuthServer\IdentityServer.AuthServer.csproj", "{6CB67E43-A30F-45C7-8CB2-4850626631DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.AuthServer", "IdentityServer.AuthServer\IdentityServer.AuthServer.csproj", "{6CB67E43-A30F-45C7-8CB2-4850626631DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer.ClassicClientApp", "IdentityServer.ClassicClientApp\IdentityServer.ClassicClientApp.csproj", "{A64945D2-9A88-42B4-9B01-2F2169B82EEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.Client1", "IdentityServer.ClassicClientApp\IdentityServer.Client1.csproj", "{A64945D2-9A88-42B4-9B01-2F2169B82EEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer.SecondClassicClientApp", "IdentityServer.SecondClassicClientApp\IdentityServer.SecondClassicClientApp.csproj", "{D465982A-DEF2-4139-910F-23B0DA65F1E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.Client2", "IdentityServer.SecondClassicClientApp\IdentityServer.Client2.csproj", "{D465982A-DEF2-4139-910F-23B0DA65F1E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer.ModernClientApp", "IdentityServer.ModernClientApp\IdentityServer.ModernClientApp.csproj", "{B7357360-EA20-4208-9038-0EFA6CBDED05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.API1", "IdentityServer.ModernClientApp\IdentityServer.API1.csproj", "{B7357360-EA20-4208-9038-0EFA6CBDED05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer.SecondModernClientApp", "IdentityServer.SecondModernClientApp\IdentityServer.SecondModernClientApp.csproj", "{D7699DC1-8B6E-49B5-85D5-E0D923C9CA37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.API2", "IdentityServer.SecondModernClientApp\IdentityServer.API2.csproj", "{D7699DC1-8B6E-49B5-85D5-E0D923C9CA37}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
