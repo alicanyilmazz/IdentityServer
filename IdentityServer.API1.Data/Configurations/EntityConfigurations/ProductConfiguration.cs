@@ -15,7 +15,7 @@ namespace IdentityServer.API1.Data.Configurations.EntityConfigurations
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name).IsRequired();
-            builder.Property(x => x.Price).HasDefaultValue(0);
+            builder.Property(x => x.Price).HasPrecision(18,2);
         }
     }
 }
