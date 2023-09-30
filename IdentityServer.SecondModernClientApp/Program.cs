@@ -1,4 +1,10 @@
+using IdentityServer.API2.Core.Repositories;
+using IdentityServer.API2.Core.Services;
+using IdentityServer.API2.Core.UnitOfWork;
 using IdentityServer.API2.Data.Context;
+using IdentityServer.API2.Data.Repositories.GenericRepositories;
+using IdentityServer.API2.Data.UnitOfWork;
+using IdentityServer.API2.Service.Services;
 using IdentityServer.SharedLibrary.Common.Constants.InitializeSettings;
 using IdentityServer.SharedLibrary.Configuration.TokenConfigurations;
 using IdentityServer.SharedLibrary.Extensions.Authorization;
@@ -14,6 +20,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddTransient(typeof(IEntityRepository<>), typeof(EntityRepository<>)); // CORE , DATA
+builder.Services.AddScoped(typeof(IService<,>), typeof(Service<,>)); // CORE , SERVICE
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>(); // CORE , DATA
 builder.Services.AddDbContext<AppDbContext>(x =>
 {
     x.UseSqlServer(builder.Configuration.GetConnectionString(InitializeSetting.SQL_CONFIGURATION), option =>
