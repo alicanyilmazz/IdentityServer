@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Configuration\" />
+    <Folder Include="Extensions\Database\" />
     <Folder Include="Services\" />
     <FrameworkReference Include="Microsoft.AspNetCore.App"></FrameworkReference>
   </ItemGroup>
