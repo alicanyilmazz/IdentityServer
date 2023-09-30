@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using IdentityServer.SharedLibrary.Configuration.TokenConfigurations;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -11,15 +12,15 @@ namespace IdentityServer.SharedLibrary.Extensions.Authorization
 {
     public static class AuthorizationManager
     {
-        public static void AddCustomAuthentication(this WebApplicationBuilder builder , string authority , string audience)
+        public static void AddCustomAuthentication(this WebApplicationBuilder builder , TokenConfiguration tokenConfiguration)
         {
             builder.Services.AddAuthentication(options =>
             {
                 options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, option =>
             {
-                option.Authority = authority;
-                option.Audience = audience;
+                option.Authority = tokenConfiguration.Authority;
+                option.Audience = tokenConfiguration.Audience.First();
             });
         }
     }
