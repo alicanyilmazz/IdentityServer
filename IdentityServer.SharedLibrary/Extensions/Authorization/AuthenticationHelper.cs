@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace IdentityServer.SharedLibrary.Extensions.Authorization
 {
-    public static class AuthorizationManager
+    public static class AuthenticationHelper
     {
         public static void AddCustomAuthentication(this WebApplicationBuilder builder , TokenConfiguration tokenConfiguration)
         {
