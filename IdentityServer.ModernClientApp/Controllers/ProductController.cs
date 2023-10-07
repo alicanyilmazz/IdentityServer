@@ -1,6 +1,7 @@
 ﻿using IdentityServer.API1.Core.Dtos;
 using IdentityServer.API1.Core.Entities;
 using IdentityServer.API1.Core.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,6 +18,7 @@ namespace IdentityServer.API1.Controllers
             _productService = productService;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetProducts()
         {
