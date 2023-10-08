@@ -41,6 +41,22 @@ builder.AddCustomAuthentication(tokenConfiguration: builder.Configuration.GetSec
 //    option.Audience = "resource_api1";
 //});
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("ReadProduct", policy =>
+    {
+        policy.RequireClaim("scope", "api1.read");
+    });
+});
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("UpdateOrCreateProduct", policy =>
+    {
+        policy.RequireClaim("scope", new[] {"api1.update","api1.create"});
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
