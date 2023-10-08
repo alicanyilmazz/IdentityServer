@@ -26,7 +26,7 @@ namespace IdentityServer.API1.Controllers
         }
 
         [Authorize(Policy = "UpdateOrCreateProduct")]
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> CreateProduct(ProductDto productDto)
         {
             return ActionResultInstance(await _productService.AddAsync(productDto));
