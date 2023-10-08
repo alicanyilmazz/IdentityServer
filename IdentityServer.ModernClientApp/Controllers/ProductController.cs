@@ -18,11 +18,18 @@ namespace IdentityServer.API1.Controllers
             _productService = productService;
         }
 
-        [Authorize]
+        [Authorize(Policy = "ReadProduct")]
         [HttpGet]
         public async Task<IActionResult> GetProducts()
         {
             return ActionResultInstance(await _productService.GetAllAsync());
+        }
+
+        [Authorize(Policy = "UpdateOrCreateProduct")]
+        [HttpGet]
+        public async Task<IActionResult> CreateProduct(ProductDto productDto)
+        {
+            return ActionResultInstance(await _productService.AddAsync(productDto));
         }
     }
 }
