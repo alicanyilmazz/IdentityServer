@@ -24,5 +24,12 @@ namespace IdentityServer.API2.Controllers
         {
             return ActionResultInstance(await _movieService.GetAllAsync());
         }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> CreateMovie(MovieDto movieDto)
+        {
+            return ActionResultInstance(await _movieService.AddAsync(movieDto));
+        }
     }
 }
