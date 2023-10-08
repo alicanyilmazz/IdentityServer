@@ -1,7 +1,26 @@
-﻿
+﻿@using IdentityServer.Client1.Models;
+
 @{
     ViewData["Title"] = "Index";
 }
-
+@model ProductDto
 <h1>Index</h1>
 
+<table class="table table-bordered"> 
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var product in Model.Data)
+        {
+            <tr>
+                <th>@product.Name</th>
+                <th>@product.Price</th>
+            </tr>
+        }
+    </tbody>
+</table>
