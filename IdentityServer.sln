@@ -13,19 +13,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.API1", "Iden
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.API2", "IdentityServer.SecondModernClientApp\IdentityServer.API2.csproj", "{D7699DC1-8B6E-49B5-85D5-E0D923C9CA37}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer.API1.Core", "IdentityServer.API1.Core\IdentityServer.API1.Core.csproj", "{82B156B2-2821-446E-968D-5D852C0F81F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.API1.Core", "IdentityServer.API1.Core\IdentityServer.API1.Core.csproj", "{82B156B2-2821-446E-968D-5D852C0F81F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer.API1.Data", "IdentityServer.API1.Data\IdentityServer.API1.Data.csproj", "{EA0BFD99-BCD4-4ADD-B2FD-EFBC559814DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.API1.Data", "IdentityServer.API1.Data\IdentityServer.API1.Data.csproj", "{EA0BFD99-BCD4-4ADD-B2FD-EFBC559814DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer.API1.Service", "IdentityServer.API1.Service\IdentityServer.API1.Service.csproj", "{DDE884C3-A046-417E-97B0-075B6FF9F270}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.API1.Service", "IdentityServer.API1.Service\IdentityServer.API1.Service.csproj", "{DDE884C3-A046-417E-97B0-075B6FF9F270}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer.API2.Core", "IdentityServer.API2.Core\IdentityServer.API2.Core.csproj", "{0F0D55B2-EFA9-4DA8-9AE4-8801CD23199A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.API2.Core", "IdentityServer.API2.Core\IdentityServer.API2.Core.csproj", "{0F0D55B2-EFA9-4DA8-9AE4-8801CD23199A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer.API2.Data", "IdentityServer.API2.Data\IdentityServer.API2.Data.csproj", "{BDAA7986-EF11-4707-B6BC-6761E0865577}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.API2.Data", "IdentityServer.API2.Data\IdentityServer.API2.Data.csproj", "{BDAA7986-EF11-4707-B6BC-6761E0865577}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer.API2.Service", "IdentityServer.API2.Service\IdentityServer.API2.Service.csproj", "{869C0575-92BA-4359-ACFB-0D1BD3E54DDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.API2.Service", "IdentityServer.API2.Service\IdentityServer.API2.Service.csproj", "{869C0575-92BA-4359-ACFB-0D1BD3E54DDB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer.SharedLibrary", "IdentityServer.SharedLibrary\IdentityServer.SharedLibrary.csproj", "{B1BFE398-1BFF-444B-864A-17EA2C91CC41}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.SharedLibrary", "IdentityServer.SharedLibrary\IdentityServer.SharedLibrary.csproj", "{B1BFE398-1BFF-444B-864A-17EA2C91CC41}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer.Client3", "IdentityServer.Client3\IdentityServer.Client3.csproj", "{457B0016-7274-4101-8ABC-733ED05F58C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,10 @@ Global
 		{B1BFE398-1BFF-444B-864A-17EA2C91CC41}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1BFE398-1BFF-444B-864A-17EA2C91CC41}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1BFE398-1BFF-444B-864A-17EA2C91CC41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{457B0016-7274-4101-8ABC-733ED05F58C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{457B0016-7274-4101-8ABC-733ED05F58C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{457B0016-7274-4101-8ABC-733ED05F58C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{457B0016-7274-4101-8ABC-733ED05F58C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
