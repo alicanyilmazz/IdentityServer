@@ -6,6 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+// Add services to the container.
+builder.Services.AddControllersWithViews();
 
 builder.Services.Configure<CookieConfiguration>(builder.Configuration.GetSection(InitializeSetting.COOKIE_CONFIGURATIONS));
 builder.AddCustomCookieAuthentication(cookieConfiguration: builder.Configuration.GetSection(InitializeSetting.COOKIE_CONFIGURATIONS).Get<CookieConfiguration>());
@@ -26,6 +28,9 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapRazorPages();
 
