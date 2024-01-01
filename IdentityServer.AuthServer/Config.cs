@@ -52,9 +52,10 @@ namespace IdentityServer.AuthServer
                {
                    ClientId = "Client3MVC",
                    ClientName = "Client3 MVC App",
+                   RequirePkce = false,
                    ClientSecrets = new[] {new Secret("secret".Sha256())},
                    AllowedGrantTypes = GrantTypes.Hybrid,
-                   RedirectUris = new List<string>{ "https://localhost:7290/sign-oidc" },
+                   RedirectUris = new List<string>{ "https://localhost:7290/signin-oidc" },
                    AllowedScopes = {IdentityServerConstants.StandardScopes.OpenId, IdentityServerConstants.StandardScopes.Profile}
                }
             };
@@ -77,7 +78,7 @@ namespace IdentityServer.AuthServer
                   new Claim("given_name","Alican"),
                   new Claim("family_name", "Yılmaz")
               }},
-               new TestUser() {SubjectId="1",Username="test@gmail.com",Password="Test123",Claims=new List<Claim>(){
+               new TestUser() {SubjectId="2",Username="test@gmail.com",Password="Test123",Claims=new List<Claim>(){
                   new Claim("given_name","TestName"),
                   new Claim("family_name", "TestSurname")
               }}
