@@ -51,6 +51,7 @@ namespace IdentityServer.SharedLibrary.Extensions.Authorization
                 oidcOptions.GetClaimsFromUserInfoEndpoint = true;
                 oidcOptions.SaveTokens = true;
                 oidcOptions.Scope.Add("api1.read");
+                oidcOptions.Scope.Add("offline_access");
             });
         }
     }
