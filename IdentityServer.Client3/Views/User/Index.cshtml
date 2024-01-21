@@ -1,6 +1,61 @@
-﻿
-@*
+﻿@*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
 
-<h3>This page available for only signed users.</h3>
+@{
+    Layout = "~/Pages/_Layout.cshtml";
+}
+
+@using Microsoft.AspNetCore.Authentication;
+
+<div class="container">
+
+<h4><span class="badge bg-danger">This page available for only signed users.</span></h4>
+
+<h4><span class="badge bg-warning">Claim Data</span></h4>
+
+<table class="table table-bordered border-warning table-hover">
+    <thead>
+        <tr>
+            <th class="fw-bold">Claim Type</th>
+            <th class="fw-bold">Claim Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+            @foreach (var user in User.Claims)
+            {
+            <tr>
+                <td class="fw-bold">@user.Type</td>
+                <td class="fw-bold">@user.Value</td>
+            </tr>
+            }
+        
+    </tbody>
+</table>
+
+
+
+<h4><span class="badge bg-info">Authentication Values</span></h4>
+
+<table class="table table-bordered border-danger table-hover">
+    <thead>
+        <tr>
+            <th class="fw-bold">Authentication Property Key</th>
+            <th class="fw-bold">Authentication Property Value</th>
+        </tr>
+    </thead>
+    <tbody>
+      
+            @foreach (var authProperties in (await Context.AuthenticateAsync()).Properties.Items)
+            {
+            <tr>
+                <td class="fw-bold">@authProperties.Key</td>
+                <td class="fw-bold">@authProperties.Value</td>
+            </tr>
+            }
+       
+    </tbody>
+</table>
+
+</div>
