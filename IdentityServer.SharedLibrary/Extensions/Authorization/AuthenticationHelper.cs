@@ -48,6 +48,8 @@ namespace IdentityServer.SharedLibrary.Extensions.Authorization
                 oidcOptions.ClientId = cookieConfiguration.ClientId;
                 oidcOptions.ClientSecret = cookieConfiguration.ClientSecret;
                 oidcOptions.ResponseType = cookieConfiguration.ReturnType;
+                oidcOptions.GetClaimsFromUserInfoEndpoint = true;
+                oidcOptions.SaveTokens = true;
             });
         }
     }
