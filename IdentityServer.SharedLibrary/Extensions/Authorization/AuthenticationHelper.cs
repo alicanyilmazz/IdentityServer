@@ -50,6 +50,7 @@ namespace IdentityServer.SharedLibrary.Extensions.Authorization
                 oidcOptions.ResponseType = cookieConfiguration.ReturnType;
                 oidcOptions.GetClaimsFromUserInfoEndpoint = true;
                 oidcOptions.SaveTokens = true;
+                oidcOptions.Scope.Add("api1.read");
             });
         }
     }
