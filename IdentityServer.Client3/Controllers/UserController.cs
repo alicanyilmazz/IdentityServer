@@ -30,5 +30,11 @@ namespace IdentityServer.Client3.Controllers
             Debug.WriteLine($"{authenticatedUserId}");
             return View();
         }
+
+        public async Task LogOut()
+        {
+            await HttpContext.SignOutAsync("Cookies");
+            await HttpContext.SignOutAsync("oidc");
+        }
     }
 }
