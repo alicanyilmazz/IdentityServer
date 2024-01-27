@@ -57,10 +57,10 @@ namespace IdentityServer.AuthServer
                    AllowedGrantTypes = GrantTypes.Hybrid,
                    RedirectUris = new List<string>{ "https://localhost:7290/signin-oidc" },
                    AllowedScopes = {IdentityServerConstants.StandardScopes.OpenId, IdentityServerConstants.StandardScopes.Profile, "api1.read",IdentityServerConstants.StandardScopes.OfflineAccess},
-                   AccessTokenLifetime = DateTime.Now.AddHours(2).Second,
+                   AccessTokenLifetime = 2*60*60,
                    AllowOfflineAccess = true,
                    RefreshTokenUsage = TokenUsage.OneTimeOnly,
-                   AbsoluteRefreshTokenLifetime = DateTime.Now.AddDays(60).Second,
+                   AbsoluteRefreshTokenLifetime = (int)(DateTime.Now.AddDays(60)-DateTime.Now).TotalSeconds,
                }
             };
         }
