@@ -1,7 +1,7 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
-
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = "~/Pages/_Layout.cshtml";
 }
@@ -9,7 +9,7 @@
 @using Microsoft.AspNetCore.Authentication;
 
 <div class="container">
-
+    <a class="btn btn-dark" asp-action="LogOut">LogOut</a>
 <h4><span class="badge bg-danger">This page available for only signed users.</span></h4>
 
 <h4><span class="badge bg-warning">Claim Data</span></h4>
