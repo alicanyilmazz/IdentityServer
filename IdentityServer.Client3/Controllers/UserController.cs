@@ -6,9 +6,10 @@ using System.Security.Claims;
 
 namespace IdentityServer.Client3.Controllers
 {
-    [Authorize]
+    
     public class UserController : Controller
     {
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var authenticationValues = await HttpContext.AuthenticateAsync();
