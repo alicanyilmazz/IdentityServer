@@ -57,12 +57,13 @@ namespace IdentityServer.AuthServer
                    AllowedGrantTypes = GrantTypes.Hybrid,
                    RedirectUris = new List<string>{ "https://localhost:7290/signin-oidc" },
                    PostLogoutRedirectUris = new List<string>{ "https://localhost:7290/signout-callback-oidc" },
-                   AllowedScopes = {IdentityServerConstants.StandardScopes.OpenId, IdentityServerConstants.StandardScopes.Profile, "api1.read",IdentityServerConstants.StandardScopes.OfflineAccess},
+                   AllowedScopes = {IdentityServerConstants.StandardScopes.OpenId, IdentityServerConstants.StandardScopes.Profile, "api1.read",IdentityServerConstants.StandardScopes.OfflineAccess,"CountryAndCity"},
                    AccessTokenLifetime = 2*60*60,
                    AllowOfflineAccess = true,
                    RefreshTokenUsage = TokenUsage.OneTimeOnly,
                    RefreshTokenExpiration = TokenExpiration.Absolute,
                    AbsoluteRefreshTokenLifetime = (int)(DateTime.Now.AddDays(60)-DateTime.Now).TotalSeconds,
+                   RequireConsent = true,
                }
             };
         }
@@ -72,7 +73,8 @@ namespace IdentityServer.AuthServer
             return new List<IdentityResource>()
             {
                 new IdentityResources.OpenId(),
-                new IdentityResources.Profile()
+                new IdentityResources.Profile(),
+                new IdentityResource(){Name = "CountryAndCity",DisplayName="Country And City",Description = "User's country and city information.",UserClaims = new []{"country","city"} },
             };
         }
 
@@ -82,11 +84,15 @@ namespace IdentityServer.AuthServer
             {
               new TestUser() {SubjectId="1",Username="alicanyilmaz101@gmail.com",Password="Alican123",Claims=new List<Claim>(){
                   new Claim("given_name","Alican"),
-                  new Claim("family_name", "Yılmaz")
+                  new Claim("family_name", "Yılmaz"),
+                  new Claim("country", "Turkey"),
+                  new Claim("city", "Hatay")
               }},
                new TestUser() {SubjectId="2",Username="test@gmail.com",Password="Test123",Claims=new List<Claim>(){
                   new Claim("given_name","TestName"),
-                  new Claim("family_name", "TestSurname")
+                  new Claim("family_name", "TestSurname"),
+                  new Claim("country", "Turkey"),
+                  new Claim("city", "Ankara")
               }}
             };
         }

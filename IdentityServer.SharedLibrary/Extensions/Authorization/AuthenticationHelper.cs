@@ -1,5 +1,6 @@
 ﻿using IdentityServer.SharedLibrary.Configuration.CookieConfigurations;
 using IdentityServer.SharedLibrary.Configuration.TokenConfigurations;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -52,6 +53,9 @@ namespace IdentityServer.SharedLibrary.Extensions.Authorization
                 oidcOptions.SaveTokens = true;
                 oidcOptions.Scope.Add("api1.read");
                 oidcOptions.Scope.Add("offline_access");
+                oidcOptions.Scope.Add("CountryAndCity");
+                oidcOptions.ClaimActions.MapUniqueJsonKey("country", "country");
+                oidcOptions.ClaimActions.MapUniqueJsonKey("city", "city");
             });
         }
     }
