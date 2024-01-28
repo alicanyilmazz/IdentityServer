@@ -1,15 +1,24 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿using IdentityModel.Client;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using System.Diagnostics;
+using System.Globalization;
 using System.Security.Claims;
 
 namespace IdentityServer.Client3.Controllers
 {
-    
+    [Authorize]
     public class UserController : Controller
     {
-        [Authorize]
+        private readonly IConfiguration _configuration;
+
+        public UserController(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
         public async Task<IActionResult> Index()
         {
             var authenticationValues = await HttpContext.AuthenticateAsync();
@@ -36,6 +45,52 @@ namespace IdentityServer.Client3.Controllers
         {
             await HttpContext.SignOutAsync("Cookies");
             await HttpContext.SignOutAsync("oidc");
+        }
+
+        public async Task<IActionResult> GetRefreshToken()
+        {
+            try
+            {
+                HttpClient httpClient = new HttpClient();
+                var discoveryDocument = await httpClient.GetDiscoveryDocumentAsync("https://localhost:7025");
+                if (discoveryDocument.IsError)
+                {
+                    throw new Exception("Discovery Endpoint not found!");
+                }
+                var refreshToken = await HttpContext.GetTokenAsync(OpenIdConnectParameterNames.RefreshToken);
+
+                RefreshTokenRequest refreshTokenRequest = new RefreshTokenRequest();
+                refreshTokenRequest.ClientId = _configuration["CookieConfigurations:ClientId"];
+                refreshTokenRequest.ClientSecret = _configuration["CookieConfigurations:ClientSecret"];
+                refreshTokenRequest.RefreshToken = refreshToken;
+                refreshTokenRequest.Address = discoveryDocument.TokenEndpoint;
+
+                var token = await httpClient.RequestRefreshTokenAsync(refreshTokenRequest);
+                if (token.IsError)
+                {
+                    throw new Exception("Token not found!");
+                }
+                var tokens = new List<AuthenticationToken>
+                {
+                    new AuthenticationToken{Name = OpenIdConnectParameterNames.IdToken,Value = token.IdentityToken},
+                    new AuthenticationToken{Name = OpenIdConnectParameterNames.AccessToken,Value = token.AccessToken},
+                    new AuthenticationToken{Name = OpenIdConnectParameterNames.RefreshToken,Value = token.RefreshToken},
+                    new AuthenticationToken{Name = OpenIdConnectParameterNames.ExpiresIn,Value = DateTime.UtcNow.AddSeconds(token.ExpiresIn).ToString("o",CultureInfo.InvariantCulture)},
+                };
+
+                var authenticationResult = await HttpContext.AuthenticateAsync();
+                var authenticationProperties = authenticationResult.Properties;
+
+                authenticationProperties.StoreTokens(tokens);
+
+                await HttpContext.SignInAsync(_configuration["CookieConfigurations:DefaultScheme"], authenticationResult.Principal, authenticationProperties);
+                
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index");
+            }
         }
     }
 }
