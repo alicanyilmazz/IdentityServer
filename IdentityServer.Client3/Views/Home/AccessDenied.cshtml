@@ -1,0 +1,13 @@
+﻿
+@{
+    Layout = "~/Pages/_Layout.cshtml";
+}
+@{
+    ViewData["Title"] = "AccessDenied";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+<h1>AccessDenied</h1>
+
+<h3>You can not access : @ViewBag.url</h3>
