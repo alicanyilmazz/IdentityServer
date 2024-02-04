@@ -42,7 +42,11 @@ namespace IdentityServer.SharedLibrary.Extensions.Authorization
             {
                 options.DefaultScheme = cookieConfiguration.DefaultScheme;
                 options.DefaultChallengeScheme = cookieConfiguration.DefaultChallengeScheme;
-            }).AddCookie(cookieConfiguration.DefaultScheme).AddOpenIdConnect(cookieConfiguration.DefaultChallengeScheme, oidcOptions =>
+            }).AddCookie(cookieConfiguration.DefaultScheme, options =>
+            {
+                options.AccessDeniedPath = "/Home/AccessDenied";
+
+            }).AddOpenIdConnect(cookieConfiguration.DefaultChallengeScheme, oidcOptions =>
             {
                 oidcOptions.SignInScheme = cookieConfiguration.DefaultScheme;
                 oidcOptions.Authority = cookieConfiguration.Authority;
@@ -54,8 +58,14 @@ namespace IdentityServer.SharedLibrary.Extensions.Authorization
                 oidcOptions.Scope.Add("api1.read");
                 oidcOptions.Scope.Add("offline_access");
                 oidcOptions.Scope.Add("CountryAndCity");
+                oidcOptions.Scope.Add("Roles");
                 oidcOptions.ClaimActions.MapUniqueJsonKey("country", "country");
                 oidcOptions.ClaimActions.MapUniqueJsonKey("city", "city");
+                oidcOptions.ClaimActions.MapUniqueJsonKey("role", "role");
+                oidcOptions.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                {
+                    RoleClaimType = "role"
+                };
             });
         }
     }
