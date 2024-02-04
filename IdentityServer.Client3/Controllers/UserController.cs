@@ -92,5 +92,23 @@ namespace IdentityServer.Client3.Controllers
                 return RedirectToAction("Index");
             }
         }
+
+        [Authorize(Roles ="admin")]
+        public async Task<IActionResult> Admin()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "customer")]
+        public async Task<IActionResult> Customer()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "customer,admin")]
+        public async Task<IActionResult> Common()
+        {
+            return View();
+        }
     }
 }
