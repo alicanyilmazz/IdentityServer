@@ -1,4 +1,5 @@
-﻿using IdentityServer4;
+﻿using IdentityServer.AuthServer.Configuration.Constants;
+using IdentityServer4;
 using IdentityServer4.Models;
 using IdentityServer4.Test;
 using System.Security.Claims;
@@ -55,8 +56,25 @@ namespace IdentityServer.AuthServer
                    RequirePkce = false,
                    ClientSecrets = new[] {new Secret("secret".Sha256())},
                    AllowedGrantTypes = GrantTypes.Hybrid,
-                   RedirectUris = new List<string>{ "https://localhost:7290/signin-oidc" },
-                   PostLogoutRedirectUris = new List<string>{ "https://localhost:7290/signout-callback-oidc" },
+                   RedirectUris = GetEndpoint.GetRedirectUris(new List<ApplicationCode>{ApplicationCode.Client3Mvc}),
+                   PostLogoutRedirectUris = GetEndpoint.GetPostLogoutRedirectUris(new List<ApplicationCode>{ApplicationCode.Client3Mvc}),
+                   AllowedScopes = {IdentityServerConstants.StandardScopes.OpenId, IdentityServerConstants.StandardScopes.Profile, "api1.read",IdentityServerConstants.StandardScopes.OfflineAccess,"CountryAndCity","Roles"},
+                   AccessTokenLifetime = 2*60*60,
+                   AllowOfflineAccess = true,
+                   RefreshTokenUsage = TokenUsage.OneTimeOnly,
+                   RefreshTokenExpiration = TokenExpiration.Absolute,
+                   AbsoluteRefreshTokenLifetime = (int)(DateTime.Now.AddDays(60)-DateTime.Now).TotalSeconds,
+                   RequireConsent = true,
+               },
+               new Client()
+               {
+                   ClientId = "Client2MVC",
+                   ClientName = "Client2 MVC App",
+                   RequirePkce = false,
+                   ClientSecrets = new[] {new Secret("secret".Sha256())},
+                   AllowedGrantTypes = GrantTypes.Hybrid,
+                   RedirectUris = GetEndpoint.GetRedirectUris(new List<ApplicationCode>{ApplicationCode.Client2Mvc}),
+                   PostLogoutRedirectUris = GetEndpoint.GetPostLogoutRedirectUris(new List<ApplicationCode>{ApplicationCode.Client2Mvc}),
                    AllowedScopes = {IdentityServerConstants.StandardScopes.OpenId, IdentityServerConstants.StandardScopes.Profile, "api1.read",IdentityServerConstants.StandardScopes.OfflineAccess,"CountryAndCity","Roles"},
                    AccessTokenLifetime = 2*60*60,
                    AllowOfflineAccess = true,
