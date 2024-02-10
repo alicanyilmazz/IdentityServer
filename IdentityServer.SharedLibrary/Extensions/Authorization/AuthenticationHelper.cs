@@ -35,7 +35,7 @@ namespace IdentityServer.SharedLibrary.Extensions.Authorization
         /// This method adding Cookie Authentication Validation
         /// </summary>
         /// <param name="builder"></param>
-        /// <param name="cookieConfiguration"></param>
+        /// <param name="cookieConfiguration">Provides Cookie customization properties</param>
         public static void AddCustomCookieAuthentication(this WebApplicationBuilder builder, CookieConfiguration cookieConfiguration)
         {
             builder.Services.AddAuthentication(options =>
@@ -44,7 +44,7 @@ namespace IdentityServer.SharedLibrary.Extensions.Authorization
                 options.DefaultChallengeScheme = cookieConfiguration.DefaultChallengeScheme;
             }).AddCookie(cookieConfiguration.DefaultScheme, options =>
             {
-                options.AccessDeniedPath = "/Home/AccessDenied";
+                options.AccessDeniedPath = cookieConfiguration.AccessDeniedPath;
 
             }).AddOpenIdConnect(cookieConfiguration.DefaultChallengeScheme, oidcOptions =>
             {
@@ -53,19 +53,23 @@ namespace IdentityServer.SharedLibrary.Extensions.Authorization
                 oidcOptions.ClientId = cookieConfiguration.ClientId;
                 oidcOptions.ClientSecret = cookieConfiguration.ClientSecret;
                 oidcOptions.ResponseType = cookieConfiguration.ReturnType;
-                oidcOptions.GetClaimsFromUserInfoEndpoint = true;
-                oidcOptions.SaveTokens = true;
-                oidcOptions.Scope.Add("api1.read");
-                oidcOptions.Scope.Add("offline_access");
-                oidcOptions.Scope.Add("CountryAndCity");
-                oidcOptions.Scope.Add("Roles");
-                oidcOptions.ClaimActions.MapUniqueJsonKey("country", "country");
-                oidcOptions.ClaimActions.MapUniqueJsonKey("city", "city");
-                oidcOptions.ClaimActions.MapUniqueJsonKey("role", "role");
-                oidcOptions.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                oidcOptions.GetClaimsFromUserInfoEndpoint = cookieConfiguration.GetClaimsFromUserInfoEndpoint;
+                oidcOptions.SaveTokens = cookieConfiguration.SaveTokens;
+                foreach (var claim in cookieConfiguration.Claims)
                 {
-                    RoleClaimType = "role"
-                };
+                    oidcOptions.Scope.Add(claim);
+                }
+                foreach (var claim in cookieConfiguration.ClaimsMapping)
+                {
+                    oidcOptions.ClaimActions.MapUniqueJsonKey(claim.ClaimType, claim.JsonKey);
+                }
+                if (cookieConfiguration.IsRoleBasedAuthorizationActive)
+                {
+                    oidcOptions.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                    {
+                        RoleClaimType = cookieConfiguration.RoleClaimType
+                    };
+                }
             });
         }
     }
