@@ -1,7 +1,14 @@
+using IdentityServer.SharedLibrary.Common.Constants.InitializeSettings;
+using IdentityServer.SharedLibrary.Configuration.CookieConfigurations;
+using IdentityServer.SharedLibrary.Extensions.Authorization;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.Configure<CookieConfiguration>(builder.Configuration.GetSection(InitializeSetting.COOKIE_CONFIGURATIONS));
+builder.AddCustomCookieAuthentication(cookieConfiguration: builder.Configuration.GetSection(InitializeSetting.COOKIE_CONFIGURATIONS).Get<CookieConfiguration>());
 
 var app = builder.Build();
 
@@ -19,9 +26,9 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
-
+app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=User}/{action=Index}/{id?}");
 
 app.Run();
