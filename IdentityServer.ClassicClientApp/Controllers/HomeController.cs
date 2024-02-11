@@ -15,7 +15,12 @@ namespace IdentityServer.ClassicClientApp.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.IsActive = "active";
             return View();
+        }
+        public IActionResult Products()
+        {
+            return RedirectToAction("Index", "Products");
         }
 
         public IActionResult Privacy()

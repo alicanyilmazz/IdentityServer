@@ -1,8 +1,15 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@{
+    ViewData["Title"] = "Index";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<main class="px-3">
+    <h1>First Client Application</h1>
+    <p class="lead">This application created for IdentityServer Tutorial.</p>
+    <p class="lead">
+        <a asp-controller="Home" asp-action="Products" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Click to see the product list.</a>
+    </p>
+</main>

@@ -1,0 +1,83 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model IdentityServer.Client2.Models.CookieInformation
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header backgorund-px-dark">
+                <h5 class="modal-title" id="exampleModalLabel1">Claims</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body backgorund-px-dark">
+                <div style="overflow-x:auto;">
+                    <table class="table table-bordered border-warning table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="fw-bold backgorund-sx-dark-text">Claim Type</th>
+                                <th scope="col" class="fw-bold backgorund-sx-dark-text">Claim Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var user in Model.CookieClaims)
+                            {
+                                <tr>
+                                    <td class="fw-bold backgorund-sx-dark-text">@user.Key</td>
+                                    <td class="fw-bold backgorund-sx-dark-text">@user.Value</td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer backgorund-px-dark">
+                <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header backgorund-px-dark">
+                <h5 class="modal-title" id="exampleModalLabel2">Authentication Properties</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body backgorund-px-dark">
+                <div style="overflow-x:auto;">
+                    <table class="table table-bordered border-warning table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="fw-bold backgorund-sx-dark-text">Authentication Property Key</th>
+                                <th scope="col" class="fw-bold backgorund-sx-dark-text">Authentication Property Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var authProperties in Model.CookieAuthenticationProperties)
+                            {
+                                <tr>
+                                    <td class="fw-bold backgorund-sx-dark-text">@authProperties.Key</td>
+                                    <td class="fw-bold backgorund-sx-dark-text">@authProperties.Value</td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer backgorund-px-dark">
+                <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal">Close</button>
+                <a class="btn btn-outline-warning" asp-action="GetRefreshToken">GetRefreshToken</a>
+            </div>
+        </div>
+    </div>
+</div>

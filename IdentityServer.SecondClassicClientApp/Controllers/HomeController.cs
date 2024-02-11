@@ -15,9 +15,13 @@ namespace IdentityServer.SecondClassicClientApp.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.IsActive = "active";
             return View();
         }
-
+        public IActionResult SignIn()
+        {
+            return RedirectToAction("Index", "User");
+        }
         public IActionResult Privacy()
         {
             return View();
@@ -27,6 +31,11 @@ namespace IdentityServer.SecondClassicClientApp.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+        public IActionResult AccessDenied(string ReturnUrl)
+        {
+            ViewBag.url = ReturnUrl;
+            return View();
         }
     }
 }

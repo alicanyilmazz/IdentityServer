@@ -1,5 +1,5 @@
 ﻿using IdentityModel.Client;
-using IdentityServer.Client3.Models;
+using IdentityServer.Client2.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +8,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Security.Claims;
 
-namespace IdentityServer.Client3.Controllers
+namespace IdentityServer.Client2.Controllers
 {
     [Authorize]
     public class UserController : Controller
@@ -30,7 +30,7 @@ namespace IdentityServer.Client3.Controllers
                 foreach (var property in properties)
                 {
                     Debug.WriteLine($"{property.Key} - {property.Value}");
-                    cookieInformation.CookieAuthenticationProperties.Add(new CookieAuthenticationProperties { Key = property.Key, Value = property.Value});
+                    cookieInformation.CookieAuthenticationProperties.Add(new CookieAuthenticationProperties { Key = property.Key, Value = property.Value });
                 }
             }
             foreach (var claim in User.Claims)
@@ -51,7 +51,7 @@ namespace IdentityServer.Client3.Controllers
         public async Task LogOut()
         {
             await HttpContext.SignOutAsync("Cookies");
-            await HttpContext.SignOutAsync("oidc");           
+            await HttpContext.SignOutAsync("oidc");
         }
 
         public async Task<IActionResult> GetRefreshToken()
@@ -91,7 +91,7 @@ namespace IdentityServer.Client3.Controllers
                 authenticationProperties.StoreTokens(tokens);
 
                 await HttpContext.SignInAsync(_configuration["CookieConfigurations:DefaultScheme"], authenticationResult.Principal, authenticationProperties);
-                
+
                 return RedirectToAction("Index");
             }
             catch (Exception)
@@ -100,7 +100,7 @@ namespace IdentityServer.Client3.Controllers
             }
         }
 
-        [Authorize(Roles ="admin")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Admin()
         {
             return View();
