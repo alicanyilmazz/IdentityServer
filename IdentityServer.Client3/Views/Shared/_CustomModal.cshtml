@@ -7,18 +7,18 @@
 <!-- Modal -->
 <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
     <div class="modal-dialog modal-xl">
-        <div class="modal-content custom-modal-border-1">
-            <div class="modal-header backgorund-sx-dark" style="border:none;">
-                <h5 class="modal-title backgorund-sx-dark-text" id="exampleModalLabel3">Claims</h5>
+        <div class="modal-content custom-modal-border">
+            <div class="modal-header custom-background-color custom-modal-border-none">
+                <h5 class="modal-title custom-text-color" id="exampleModalLabel3">Claims</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body backgorund-sx-dark">
+            <div class="modal-body custom-background-color">
                 <div style="overflow-x:auto;">
-                    <table class="table table-bordered table-hover" style="border-color:darkgray;">
+                    <table class="table table-bordered table-hover custom-table-preferences">
                         <thead>
                             <tr>
-                                <th scope="col" class="fw-bold backgorund-sx-dark-text">Claim Type</th>
-                                <th scope="col" class="fw-bold backgorund-sx-dark-text">Claim Value</th>
+                                <th scope="col" class="fw-bold custom-text-color">Claim Type</th>
+                                <th scope="col" class="fw-bold custom-text-color">Claim Value</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -26,8 +26,8 @@
                             @foreach (var user in Model.CookieClaims)
                             {
                                 <tr>
-                                    <td class="fw-bold backgorund-sx-dark-text">@user.Key</td>
-                                    <td class="fw-bold backgorund-sx-dark-text">@user.Value</td>
+                                    <td class="fw-bold custom-text-color">@user.Key</td>
+                                    <td class="fw-bold custom-text-color">@user.Value</td>
                                 </tr>
                             }
 
@@ -35,7 +35,7 @@
                     </table>
                 </div>
             </div>
-            <div class="modal-footer backgorund-sx-dark" style="border:none!important;">
+            <div class="modal-footer custom-background-color custom-modal-border-none">
                 <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
@@ -46,18 +46,18 @@
 <!-- Modal -->
 <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel4" aria-hidden="true">
     <div class="modal-dialog modal-xl">
-        <div class="modal-content custom-modal-border-1">
-            <div class="modal-header backgorund-sx-dark" style="border:none;">
-                <h5 class="modal-title backgorund-sx-dark-text" id="exampleModalLabel4">Authentication Properties</h5>
+        <div class="modal-content custom-modal-border">
+            <div class="modal-header custom-background-color custom-modal-border-none">
+                <h5 class="modal-title custom-text-color" id="exampleModalLabel4">Authentication Properties</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body backgorund-sx-dark">
+            <div class="modal-body custom-background-color">
                 <div style="overflow-x:auto;">
-                    <table class="table table-bordered table-hover" style="border-color:darkgray;">
+                    <table class="table table-bordered table-hover custom-table-preferences">
                         <thead>
                             <tr>
-                                <th scope="col" class="fw-bold backgorund-sx-dark-text">Authentication Property Key</th>
-                                <th scope="col" class="fw-bold backgorund-sx-dark-text">Authentication Property Value</th>
+                                <th scope="col" class="fw-bold custom-text-color">Authentication Property Key</th>
+                                <th scope="col" class="fw-bold custom-text-color">Authentication Property Value</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -65,8 +65,8 @@
                             @foreach (var authProperties in Model.CookieAuthenticationProperties)
                             {
                                 <tr>
-                                    <td class="fw-bold backgorund-sx-dark-text">@authProperties.Key</td>
-                                    <td class="fw-bold backgorund-sx-dark-text">@authProperties.Value</td>
+                                    <td class="fw-bold custom-text-color">@authProperties.Key</td>
+                                    <td class="fw-bold custom-text-color">@authProperties.Value</td>
                                 </tr>
                             }
 
@@ -74,7 +74,7 @@
                     </table>
                 </div>
             </div>
-            <div class="modal-footer backgorund-sx-dark" style="border:none!important;">
+            <div class="modal-footer custom-background-color custom-modal-border-none">
                 <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal">Close</button>
                 <a class="btn btn-outline-warning" asp-action="GetRefreshToken">GetRefreshToken</a>
             </div>

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Globals
  */
 
@@ -10,28 +10,29 @@
     color: #333;
     text-shadow: none; /* Prevent inheritance from `body` */
 }
-.backgorund-px-dark {
-    background-color : #292126 !important;
-}
-.backgorund-sx-dark {
-    background-color: #18292f !important;
-}
-.backgorund-tx-dark {
-    background-color: #574d1e !important
+
+
+.custom-background-color {
+    background-color: #292126 !important;
 }
 
-.backgorund-px-dark-text {
-    color:bisque !important;
+.custom-table-preferences {
+    border-color: darkgray;
 }
 
-.backgorund-sx-dark-text {
-    color: bisque !important;
+
+.custom-text-color {
+    color: darkgrey !important;
 }
 
-.backgorund-tx-dark-text {
-    color: bisque !important;
+
+.custom-modal-border-none {
+    border: none !important;
 }
 
+.custom-modal-border {
+    border: 3px solid darkgray !important;
+}
 
 /*
  * Base structure
@@ -45,11 +46,6 @@ body {
 .cover-container {
     max-width: 42em;
 }
-
-
-/*
- * Header
- */
 
 .nav-masthead .nav-link {
     padding: .25rem 0;
@@ -72,3 +68,43 @@ body {
     color: #fff;
     border-bottom-color: #fff;
 }
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+.navbar-logo-fixes {
+    width: 43px;
+    height: auto;
+}
+
+/* Yatay kaydırma çubuğu stilleri */
+::-webkit-scrollbar {
+    height: 7px; /* Kaydırma çubuğu yüksekliği */
+}
+
+/* Kaydırma çubuğunun arka plan rengi */
+::-webkit-scrollbar-track {
+    background-color: lightgray; /* Kaydırma çubuğu arka plan rengi */
+}
+
+/* Kaydırma çubuğunun gölge rengi */
+::-webkit-scrollbar-thumb {
+    background-color: darkgrey; /* Kaydırma çubuğu gölge rengi */
+    /*border-radius: 6px;*/ /* Kaydırma çubuğu kenar yarıçapı */
+}
+
+    /* Kaydırma çubuğuna fare üzerine gelindiğinde */
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: #555; /* Kaydırma çubuğu hover rengi */
+    }

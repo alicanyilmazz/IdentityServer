@@ -10,33 +10,26 @@
     color: #333;
     text-shadow: none; /* Prevent inheritance from `body` */
 }
-.custom-background-color-1 {
-    background-color: #292126 !important;
-}
-.custom-background-color-2 {
+
+.custom-background-color {
     background-color: #18292f !important;
 }
-.custom-background-color-3 {
-    background-color: #574d1e !important
+
+
+.custom-table-preferences{
+    border-color:darkgray;
 }
 
-.custom-text-color-1 {
-    color: darkgrey !important;
-}
 
-.custom-text-color-2 {
-    color: darkgrey !important;
-}
-
-.custom-text-color-3 {
+.custom-text-color {
     color: darkgrey !important;
 }
 
 
-.custom-modal-border-0 {
+.custom-modal-border-none {
     border: none !important;
 }
-.custom-modal-border-1 {
+.custom-modal-border {
     border: 3px solid darkgray !important;
 }
 
