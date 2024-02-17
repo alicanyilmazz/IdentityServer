@@ -7,78 +7,8 @@
 }
 
 @using Microsoft.AspNetCore.Authentication;
-<main class="px-3">
-    <h3>Second Client Application</h3>
-    <p></p>
-    <a class="btn btn-outline-primary" asp-action="LogOut">LogOut</a>
-    <p></p>
-    <p class="lead">This page available for only signed users.</p>
-    <p></p>
-    <p class="lead">Claim Data</p>
-    <p></p>
-    <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-        Claim Data
-    </button>
-    <p></p>
-    <p class="lead">Authentication Values</p>
-    <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-        Authentication Values
-    </button>
-</main>
+@model IdentityServer.Client2.Models.CookieInformation
 
 <partial name="~/Views/Shared/_CustomModal.cshtml" model="Model" />
-
-
-@* It is left as an example. *@
-@* <div class="container">
-
-    <!-- Button trigger modal -->
-
-     <div style="overflow-x:auto;">
-    <table class="table table-bordered border-warning table-hover">
-        <thead>
-            <tr>
-                <th  style="color:bisque" scope="col" class="fw-bold">Claim Type</th>
-                <th  style="color:bisque" scope="col" class="fw-bold">Claim Value</th>
-            </tr>
-        </thead>
-        <tbody>
-
-            @foreach (var user in User.Claims)
-            {
-                <tr>
-                    <td style="color:bisque" class="fw-bold">@user.Type</td>
-                    <td style="color:bisque" class="fw-bold">@user.Value</td>
-                </tr>
-            }
-
-        </tbody>
-    </table>
-    </div> 
-
-
-    <div style="overflow-x:auto;">
-    <table class="table table-bordered border-danger table-hover">
-        <thead>
-            <tr>
-                <th style="color:bisque" scope="col" class="fw-bold">Authentication Property Key</th>
-                <th style="color:bisque" scope="col" class="fw-bold">Authentication Property Value</th>
-            </tr>
-        </thead>
-        <tbody>
-
-            @foreach (var authProperties in (await Context.AuthenticateAsync()).Properties.Items)
-            {
-                <tr>
-                    <td style="color:bisque" class="fw-bold">@authProperties.Key</td>
-                    <td style="color:bisque" class="fw-bold">@authProperties.Value</td>
-                </tr>
-            }
-
-        </tbody>
-    </table>
-    </div> 
-</div>
- *@
 
 
