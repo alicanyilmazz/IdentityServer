@@ -1,0 +1,48 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<div class="d-flex flex-column flex-shrink-0 p-3 text-white custom-sidebar-background-color" style="width: 280px;text-align:left;">
+    <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+        <i class="fa-brands fa-square-github" style="font-size:xx-large;"></i>
+        <span class="fs-4" style="margin-left:10px;">Account</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li>
+            <a  class="nav-link text-white" data-bs-toggle="modal" data-bs-target="#exampleModal4">
+                <i class="fa-solid fa-arrow-up-right-dots"></i>
+                Authentication Properties
+            </a>
+        </li>
+        <li>
+            <a class="nav-link text-white" data-bs-toggle="modal" data-bs-target="#exampleModal3">
+                <i class="fa-solid fa-location-arrow"></i>
+                Claim Data
+            </a>
+        </li>
+        <li>
+            <a class="nav-link text-white" asp-controller="User" asp-action="GetRefreshToken">
+                <i class="fa-solid fa-arrow-rotate-right"></i>
+                Get Refresh Token
+            </a>
+        </li>
+    </ul>
+    <hr>
+    <div class="dropdown">
+        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://avatars.githubusercontent.com/u/49749125?v=4" alt="" width="32" height="32" class="rounded-circle me-2">
+            <strong>Settings</strong>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+            <li><a class="dropdown-item">New project...</a></li>
+            <li><a class="dropdown-item">Settings</a></li>
+            <li><a class="dropdown-item">Profile</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item">Sign out</a></li>
+        </ul>
+    </div>
+</div>
