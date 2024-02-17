@@ -12,7 +12,7 @@
 }
 
 .custom-background-color {
-    background-color: #18292f !important;
+    background-color: #212529 !important;
 }
 
 
@@ -107,4 +107,8 @@ body {
     ::-webkit-scrollbar-thumb:hover {
         background-color: #555; /* Kaydırma çubuğu hover rengi */
     }
+
+.custom-home-page-color {
+    color:#FFD93D !important;
+}
 
