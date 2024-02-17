@@ -1,12 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace IdentityServer.Client3.Controllers
 {
     public class HomeController : Controller
     {
+        [AllowAnonymous]
         public IActionResult Index()
         {
             ViewBag.IsActive = "active";
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "User");
+            }
             return View();
         }
         public IActionResult SignIn()
