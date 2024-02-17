@@ -16,6 +16,8 @@ namespace IdentityServer.API2.Data.Configurations.EntityConfigurations
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name).IsRequired();
             builder.Property(x => x.ReleaseDate).HasDefaultValue(DateTime.UtcNow);
+            builder.Property(x => x.Score).HasDefaultValue(0).HasMaxLength(100);
+            builder.Property(x => x.ImageUrl).HasMaxLength(500);
         }
     }
 }
