@@ -1,9 +1,11 @@
 ﻿using IdentityServer.SecondClassicClientApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace IdentityServer.SecondClassicClientApp.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -16,6 +18,10 @@ namespace IdentityServer.SecondClassicClientApp.Controllers
         public IActionResult Index()
         {
             ViewBag.IsActive = "active";
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "User");
+            }
             return View();
         }
         public IActionResult SignIn()
