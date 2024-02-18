@@ -4,9 +4,11 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Globalization;
 using System.Security.Claims;
+using System.Text.Json.Serialization;
 
 namespace IdentityServer.Client3.Controllers
 {
@@ -22,36 +24,77 @@ namespace IdentityServer.Client3.Controllers
 
         public async Task<IActionResult> Index()
         {
-            CookieInformation cookieInformation = new CookieInformation();
-            var authenticationValues = await HttpContext.AuthenticateAsync();
-            if (authenticationValues != null)
+            UserData userData = new UserData() { IsCookieDataAvailable = false, IsMovieDataAvailable = false };
+            #region Cookie Processing
+            try
             {
-                var properties = authenticationValues.Properties.Items;
-                foreach (var property in properties)
+                CookieInformationDto cookieInformation = new CookieInformationDto();
+                var authenticationValues = await HttpContext.AuthenticateAsync();
+                if (authenticationValues != null)
                 {
-                    Debug.WriteLine($"{property.Key} - {property.Value}");
-                    cookieInformation.CookieAuthenticationProperties.Add(new CookieAuthenticationProperties { Key = property.Key, Value = property.Value});
+                    var properties = authenticationValues.Properties.Items;
+                    foreach (var property in properties)
+                    {
+                        cookieInformation.CookieAuthenticationProperties.Add(new CookieAuthenticationProperties { Key = property.Key, Value = property.Value });
+                    }
                 }
+                foreach (var claim in User.Claims)
+                {
+                    cookieInformation.CookieClaims.Add(new CookieClaims { Key = claim.Type, Value = claim.Value });
+                }
+                userData.CookieInformation = cookieInformation;
+                userData.IsCookieDataAvailable = true;
             }
-            foreach (var claim in User.Claims)
+            catch (Exception)
             {
-                Debug.WriteLine($"{claim.Type} - {claim.Value}");
-                cookieInformation.CookieClaims.Add(new CookieClaims { Key = claim.Type, Value = claim.Value });
+                //Log
             }
-
-            #region Sample
-            var authenticatedUserClaim = User.Claims.Where(x => x.Type == ClaimTypes.NameIdentifier).FirstOrDefault();
-            var authenticatedUserCountry = User.Claims.Where(x => x.Type == ClaimTypes.Country).FirstOrDefault();
-            var authenticatedUserId = authenticatedUserClaim.Value;
             #endregion
 
-            return View(cookieInformation);
+            #region Sample
+            //var authenticatedUserClaim = User.Claims.Where(x => x.Type == ClaimTypes.NameIdentifier).FirstOrDefault();
+            //var authenticatedUserCountry = User.Claims.Where(x => x.Type == ClaimTypes.Country).FirstOrDefault();
+            //var authenticatedUserId = authenticatedUserClaim.Value;
+            #endregion
+
+            #region API Data Fetch
+            try
+            {
+                HttpClient httpClient = new HttpClient();
+                var accessToken = await HttpContext.GetTokenAsync(OpenIdConnectParameterNames.AccessToken);
+                httpClient.SetBearerToken(accessToken);
+                var response = await httpClient.GetAsync("https://localhost:7044/api/movie/getmovies");
+                MovieDto movies = null;
+                if (response != null && response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    movies = JsonConvert.DeserializeObject<MovieDto>(content);
+                    if (movies is not null)
+                    {
+                        userData.MovieData = movies;
+                        userData.IsMovieDataAvailable = true;
+                    }
+                }
+                else
+                {
+                    userData.IsMovieDataAvailable = false;
+                    //Logging
+                }
+            }
+            catch (Exception)
+            {
+                userData.IsMovieDataAvailable = false;
+                //Logging
+            }
+            #endregion
+
+            return View(userData);
         }
 
         public async Task LogOut()
         {
             await HttpContext.SignOutAsync("Cookies");
-            await HttpContext.SignOutAsync("oidc");           
+            await HttpContext.SignOutAsync("oidc");
         }
 
         public async Task<IActionResult> GetRefreshToken()
@@ -91,7 +134,7 @@ namespace IdentityServer.Client3.Controllers
                 authenticationProperties.StoreTokens(tokens);
 
                 await HttpContext.SignInAsync(_configuration["CookieConfigurations:DefaultScheme"], authenticationResult.Principal, authenticationProperties);
-                
+
                 return RedirectToAction("Index");
             }
             catch (Exception)
@@ -100,7 +143,7 @@ namespace IdentityServer.Client3.Controllers
             }
         }
 
-        [Authorize(Roles ="admin")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Admin()
         {
             return View();
