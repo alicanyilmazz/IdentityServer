@@ -7,8 +7,43 @@
 }
 
 @using Microsoft.AspNetCore.Authentication;
-@model IdentityServer.Client3.Models.CookieInformation
-
-<partial name="~/Views/Shared/_CustomModal.cshtml" model="Model" />
+@model IdentityServer.Client3.Models.UserData
+<main class="px-3">
+    @if (Model.IsMovieDataAvailable)
+    {
+        <div class="d-flex">
+            @foreach (var item in Model.MovieData.Data)
+            {
+                <div class="card custom-card">
+                    <img src="@item.ImageUrl" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title card-text-properties">@item.Name</h5>
+                        <p class="card-text">
+                            @{
+                                int.TryParse(item.Score, out int scorePoint);
+                                for (int i = 0; i < scorePoint; i++)
+                                {
+                                    <i class="fa-solid fa-star star-properties"></i>
+                                }
+                                for (int i = 0; i < 5-scorePoint; i++)
+                                {
+                                    <i class="fa-regular fa-star star-properties"></i>
+                                }
+                            }
+                        </p>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Opps! Movies could not upload!
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+</main>
+<partial name="~/Views/Shared/_CustomModal.cshtml" model="Model.CookieInformation" />
 
 

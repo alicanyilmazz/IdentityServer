@@ -43,7 +43,7 @@ body {
 }
 
 .cover-container {
-    max-width: 42em;
+    max-width: 65em;
 }
 
 .nav-masthead .nav-link {
@@ -112,3 +112,17 @@ body {
     color:#FFD93D !important;
 }
 
+.custom-card {
+    width: 14rem;
+    background-color: #212529;
+    box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
+    margin: 5px;
+}
+
+.star-properties {
+    color: #FDE767;
+}
+
+.card-text-properties{
+    color:darkgray;
+}
