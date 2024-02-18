@@ -2,11 +2,13 @@
 using IdentityServer.Client3.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Globalization;
+using System.Reflection;
 using System.Security.Claims;
 using System.Text.Json.Serialization;
 
@@ -91,6 +93,36 @@ namespace IdentityServer.Client3.Controllers
             return View(userData);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Create(MovieViewModel movie, IFormFile file)
+        {
+            if (ModelState.IsValid && file != null)
+            {
+                using (var client = new HttpClient())
+                {
+                    var form = new MultipartFormDataContent
+                    {
+                        { new StringContent(movie.Name), "Name" },
+                        { new StringContent(movie.ReleaseDate.ToString()), "ReleaseDate" }
+                    };
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        await file.CopyToAsync(memoryStream);
+                        form.Add(new ByteArrayContent(memoryStream.ToArray()), "file", file.FileName);
+                    }
+                    HttpClient httpClient = new HttpClient();
+                    var accessToken = await HttpContext.GetTokenAsync(OpenIdConnectParameterNames.AccessToken);
+                    httpClient.SetBearerToken(accessToken);
+                    var response = await httpClient.PostAsync("https://localhost:7044/api/movie/getmovies", form);
+                    if (response != null && response.IsSuccessStatusCode)
+                    {
+                        var content = await response.Content.ReadAsStringAsync();
+                        var res = JsonConvert.DeserializeObject<NoDataContent<object>>(content);
+                    }
+                }
+            }
+            return View();
+        }
         public async Task LogOut()
         {
             await HttpContext.SignOutAsync("Cookies");
@@ -160,5 +192,7 @@ namespace IdentityServer.Client3.Controllers
         {
             return View();
         }
+
+
     }
 }

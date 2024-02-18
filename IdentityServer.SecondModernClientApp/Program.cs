@@ -1,10 +1,16 @@
+using IdentityServer.API2.Core.Abstract;
 using IdentityServer.API2.Core.Repositories;
 using IdentityServer.API2.Core.Services;
 using IdentityServer.API2.Core.UnitOfWork;
 using IdentityServer.API2.Data.Context;
 using IdentityServer.API2.Data.Repositories.GenericRepositories;
+using IdentityServer.API2.Data.Repositories.StoredProcedureRepositories.Command;
+using IdentityServer.API2.Data.Repositories.StoredProcedureRepositories.Query;
 using IdentityServer.API2.Data.UnitOfWork;
 using IdentityServer.API2.Service.Services;
+using IdentityServer.API2.Service.Services.ImageSaveService.Server.Managers;
+using IdentityServer.API2.Service.Services.ImageSaveService.Server.Services.ReadServices;
+using IdentityServer.API2.Service.Services.ImageSaveService.Server.Services.SaveService;
 using IdentityServer.SharedLibrary.Common.Constants.InitializeSettings;
 using IdentityServer.SharedLibrary.Configuration.TokenConfigurations;
 using IdentityServer.SharedLibrary.Extensions.Authorization;
@@ -23,6 +29,14 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddTransient(typeof(IEntityRepository<>), typeof(EntityRepository<>)); // CORE , DATA
 builder.Services.AddScoped(typeof(IService<,>), typeof(Service<,>)); // CORE , SERVICE
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>(); // CORE , DATA
+//CUSTOM
+
+builder.Services.AddTransient(typeof(IStoredProcedureCommandRepository), typeof(StoredProcedureCommandRepository)); // CORE , DATA
+builder.Services.AddTransient(typeof(IStoredProcedureQueryRepository), typeof(StoredProcedureQueryRepository)); // CORE , DATA
+builder.Services.AddTransient<IImageServerSaveManager, ImageServerSaveManager>();
+builder.Services.AddTransient<IImageServerSaveService, ImageServerSaveServiceDefault>();
+builder.Services.AddTransient<IImageServerReadService, ImageServerReadServiceDefault>();
+//CUSTOM
 builder.Services.AddDbContext<AppDbContext>(x =>
 {
     x.UseSqlServer(builder.Configuration.GetConnectionString(InitializeSetting.SQL_CONFIGURATION), option =>

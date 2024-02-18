@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using IdentityServer.API2.Core.Dtos;
+using IdentityServer.API2.Core.Dtos.StoredProcedureDtos;
 using IdentityServer.API2.Core.Entities;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace IdentityServer.API2.Service.DtoMappers
         public DtoMapper()
         {
             CreateMap<Movie, MovieDto>().ReverseMap();
+            CreateMap<ServerImagesInformation, ImageServerServiceResponse>().ReverseMap();
         }
     }
 }

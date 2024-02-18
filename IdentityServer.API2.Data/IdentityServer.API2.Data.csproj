@@ -23,4 +23,9 @@
     <ProjectReference Include="..\IdentityServer.API2.Core\IdentityServer.API2.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Configurations\StoredProcedureConfiguration\Delete\" />
+    <Folder Include="Configurations\StoredProcedureConfiguration\Update\" />
+  </ItemGroup>
+
 </Project>

@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+@model IdentityServer.Client3.Models.MovieViewModel
+@using (Html.BeginForm("UploadFilm", "Film", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.TextBoxFor(m => m.Name)
+    @Html.TextBoxFor(m => m.ReleaseDate)
+    @Html.TextBoxFor(m => m.Score)
+    <input type="file" name="file" />
+    <input type="submit" value="Upload" />
+}
