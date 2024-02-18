@@ -1,6 +1,6 @@
 ﻿namespace IdentityServer.Client3.Models
 {
-    public class CookieInformation
+    public class CookieInformationDto
     {
         public List<CookieClaims> CookieClaims { get; set; } = new List<CookieClaims>();
         public List<CookieAuthenticationProperties> CookieAuthenticationProperties { get; set; } = new List<CookieAuthenticationProperties>();
