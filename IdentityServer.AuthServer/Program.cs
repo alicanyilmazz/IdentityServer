@@ -1,3 +1,8 @@
+using IdentityServer.AuthServer.Models;
+using IdentityServer.SharedLibrary.Common.Constants.InitializeSettings;
+using Microsoft.EntityFrameworkCore;
+using System.Reflection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -10,7 +15,13 @@ builder.Services.AddIdentityServer()
     .AddInMemoryIdentityResources(IdentityServer.AuthServer.Config.GetIdentityResources())
     .AddTestUsers(IdentityServer.AuthServer.Config.GetUsers().ToList())
     .AddDeveloperSigningCredential();
-
+builder.Services.AddDbContext<CustomDbContext>(x =>
+{
+    x.UseSqlServer(builder.Configuration.GetConnectionString(InitializeSetting.SQL_CONFIGURATION), option =>
+    {
+        option.MigrationsAssembly(Assembly.GetAssembly(typeof(CustomDbContext)).GetName().Name);
+    });
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
