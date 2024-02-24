@@ -1,6 +1,7 @@
 using IdentityServer.SharedLibrary.Common.Constants.InitializeSettings;
 using IdentityServer.SharedLibrary.Configuration.CookieConfigurations;
 using IdentityServer.SharedLibrary.Extensions.Authorization;
+using IdentityServer.SharedLibrary.Extensions.Client;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +12,8 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.Configure<CookieConfiguration>(builder.Configuration.GetSection(InitializeSetting.COOKIE_CONFIGURATIONS));
 builder.AddCustomCookieAuthentication(cookieConfiguration: builder.Configuration.GetSection(InitializeSetting.COOKIE_CONFIGURATIONS).Get<CookieConfiguration>());
-
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<IApiResourcesHttpClient, ApiResourcesHttpClient>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

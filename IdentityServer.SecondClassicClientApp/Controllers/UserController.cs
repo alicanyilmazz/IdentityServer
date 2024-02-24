@@ -1,5 +1,6 @@
 ﻿using IdentityModel.Client;
 using IdentityServer.Client2.Models;
+using IdentityServer.SharedLibrary.Extensions.Client;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -15,10 +16,12 @@ namespace IdentityServer.Client2.Controllers
     public class UserController : Controller
     {
         private readonly IConfiguration _configuration;
+        private readonly IApiResourcesHttpClient _apiResourcesHttpClient;
 
-        public UserController(IConfiguration configuration)
+        public UserController(IConfiguration configuration, IApiResourcesHttpClient apiResourcesHttpClient)
         {
             _configuration = configuration;
+            _apiResourcesHttpClient = apiResourcesHttpClient;
         }
 
         public async Task<IActionResult> Index()
@@ -59,9 +62,7 @@ namespace IdentityServer.Client2.Controllers
             #region API Data Fetch
             try
             {
-                HttpClient httpClient = new HttpClient();
-                var accessToken = await HttpContext.GetTokenAsync(OpenIdConnectParameterNames.AccessToken);
-                httpClient.SetBearerToken(accessToken);
+                HttpClient httpClient = await _apiResourcesHttpClient.GetHttpClientAsync();
                 var response = await httpClient.GetAsync("https://localhost:7044/api/image/getall");
                 ImageDto movies = null;
                 if (response != null && response.IsSuccessStatusCode)
