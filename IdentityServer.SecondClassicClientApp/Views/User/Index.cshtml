@@ -7,8 +7,27 @@
 }
 
 @using Microsoft.AspNetCore.Authentication;
-@model IdentityServer.Client2.Models.CookieInformation
-
-<partial name="~/Views/Shared/_CustomModal.cshtml" model="Model" />
+@model IdentityServer.Client2.Models.UserData
+<main class="px-3">
+    @if (Model.IsImageDataAvailable)
+    {
+        <div class="d-flex">
+            @foreach (var item in Model.ImageData.Data)
+            {
+                <div class="card custom-card">
+                    <img src="@item.Path" class="card-img-top" alt="...">
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Opps! Movies could not upload!
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+</main>
+<partial name="~/Views/Shared/_CustomModal.cshtml" model="Model.CookieInformation" />
 
 

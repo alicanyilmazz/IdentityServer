@@ -3,6 +3,7 @@ using IdentityServer.API2.Core.Dtos;
 using IdentityServer.API2.Core.Repositories;
 using IdentityServer.API2.Service.DtoMappers;
 using IdentityServer.SharedLibrary.Dtos;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,11 @@ namespace IdentityServer.API2.Service.Services.ImageSaveService.Server.Services.
     public class ImageServerReadServiceDefault : IImageServerReadService
     {
         private readonly IStoredProcedureQueryRepository _storedProcedureQueryRepository;
-        public ImageServerReadServiceDefault(IStoredProcedureQueryRepository storedProcedureQueryRepository)
+        private readonly IConfiguration _configuration;
+        public ImageServerReadServiceDefault(IStoredProcedureQueryRepository storedProcedureQueryRepository, IConfiguration configuration)
         {
             _storedProcedureQueryRepository = storedProcedureQueryRepository;
+            _configuration = configuration;
         }
         public async Task<Response<IEnumerable<ImageServerServiceResponse>>> GetPhotosAsync()
         {
@@ -24,6 +27,11 @@ namespace IdentityServer.API2.Service.Services.ImageSaveService.Server.Services.
             try
             {
                 entities = ObjectMapper.Mapper.Map<IEnumerable<ImageServerServiceResponse>>(await _storedProcedureQueryRepository.GetImages());
+                var baseUrl =_configuration["Endpoints:ImageServerUrl"];
+                foreach (var entity in entities)
+                {
+                    entity.Path = baseUrl + entity.Path;
+                }
             }
             catch (Exception e)
             {
