@@ -58,7 +58,7 @@ namespace IdentityServer.AuthServer
                    AllowedGrantTypes = GrantTypes.Hybrid,
                    RedirectUris = GetEndpoint.GetRedirectUris(new List<ApplicationCode>{ApplicationCode.Client3Mvc}),
                    PostLogoutRedirectUris = GetEndpoint.GetPostLogoutRedirectUris(new List<ApplicationCode>{ApplicationCode.Client3Mvc}),
-                   AllowedScopes = {IdentityServerConstants.StandardScopes.OpenId, IdentityServerConstants.StandardScopes.Profile, "api1.read","api2.read",IdentityServerConstants.StandardScopes.OfflineAccess,"CountryAndCity","Roles"},
+                   AllowedScopes = { IdentityServerConstants.StandardScopes.Email, IdentityServerConstants.StandardScopes.OpenId, IdentityServerConstants.StandardScopes.Profile, "api1.read","api2.read",IdentityServerConstants.StandardScopes.OfflineAccess,"CountryAndCity","Roles"},
                    AccessTokenLifetime = 2*60*60,
                    AllowOfflineAccess = true,
                    RefreshTokenUsage = TokenUsage.OneTimeOnly,
@@ -90,6 +90,7 @@ namespace IdentityServer.AuthServer
         {
             return new List<IdentityResource>()
             {
+                new IdentityResources.Email(),
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),
                 new IdentityResource(){Name = "CountryAndCity",DisplayName="Country And City",Description = "User's country and city information.",UserClaims = new []{"country","city"} },
