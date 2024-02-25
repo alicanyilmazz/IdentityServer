@@ -1,4 +1,6 @@
 using IdentityServer.AuthServer.Models;
+using IdentityServer.AuthServer.Repository;
+using IdentityServer.AuthServer.Services;
 using IdentityServer.SharedLibrary.Common.Constants.InitializeSettings;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
@@ -8,12 +10,14 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddScoped<ICustomUserRepository, CustomUserRepository>();
 builder.Services.AddIdentityServer()
     .AddInMemoryApiResources(IdentityServer.AuthServer.Config.GetApiResources())
     .AddInMemoryApiScopes(IdentityServer.AuthServer.Config.GetApiScopes())
     .AddInMemoryClients(IdentityServer.AuthServer.Config.GetClients())
     .AddInMemoryIdentityResources(IdentityServer.AuthServer.Config.GetIdentityResources())
-    .AddTestUsers(IdentityServer.AuthServer.Config.GetUsers().ToList())
+    //.AddTestUsers(IdentityServer.AuthServer.Config.GetUsers().ToList())
+    .AddProfileService<CustomProfileService>()
     .AddDeveloperSigningCredential();
 builder.Services.AddDbContext<CustomDbContext>(x =>
 {
