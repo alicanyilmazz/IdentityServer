@@ -13,7 +13,7 @@ namespace IdentityServer.API1.Data.Repositories.GenericRepositories
 {
     public class EntityRepository<TEntity> : IEntityRepository<TEntity> where TEntity : class
     {
-        private readonly DbContext _context;
+        private readonly AppDbContext _context;
         private readonly DbSet<TEntity> _dbSet;
 
         public EntityRepository(AppDbContext context)
