@@ -75,13 +75,24 @@ namespace IdentityServer.AuthServer
                    AllowedGrantTypes = GrantTypes.Hybrid,
                    RedirectUris = GetEndpoint.GetRedirectUris(new List<ApplicationCode>{ApplicationCode.Client2Mvc}),
                    PostLogoutRedirectUris = GetEndpoint.GetPostLogoutRedirectUris(new List<ApplicationCode>{ApplicationCode.Client2Mvc}),
-                   AllowedScopes = {IdentityServerConstants.StandardScopes.OpenId, IdentityServerConstants.StandardScopes.Profile, "api1.read","api2.read", IdentityServerConstants.StandardScopes.OfflineAccess,"CountryAndCity","Roles"},
+                   AllowedScopes = { IdentityServerConstants.StandardScopes.Email,IdentityServerConstants.StandardScopes.OpenId, IdentityServerConstants.StandardScopes.Profile, "api1.read","api2.read", IdentityServerConstants.StandardScopes.OfflineAccess,"CountryAndCity","Roles"},
                    AccessTokenLifetime = 2*60*60,
                    AllowOfflineAccess = true,
                    RefreshTokenUsage = TokenUsage.OneTimeOnly,
                    RefreshTokenExpiration = TokenExpiration.Absolute,
                    AbsoluteRefreshTokenLifetime = (int)(DateTime.Now.AddDays(60)-DateTime.Now).TotalSeconds,
                    RequireConsent = true,
+               },
+               new Client()
+               {
+                   ClientId = "js-Client",
+                   RequireClientSecret = false,
+                   AllowedGrantTypes = GrantTypes.Code,
+                   ClientName = "Js Client (Angular)",
+                   AllowedScopes = { IdentityServerConstants.StandardScopes.Email, IdentityServerConstants.StandardScopes.OpenId, IdentityServerConstants.StandardScopes.Profile, "api1.read","api2.read",IdentityServerConstants.StandardScopes.OfflineAccess,"CountryAndCity","Roles"},
+                   RedirectUris = GetEndpoint.GetRedirectUris(new List<ApplicationCode>{ApplicationCode.SpaAngular}),
+                   AllowedCorsOrigins = {"http://localhost:4200/"},
+                   PostLogoutRedirectUris =  {"http://localhost:4200/"},
                }
             };
         }

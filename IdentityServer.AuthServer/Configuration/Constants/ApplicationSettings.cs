@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using Microsoft.Extensions.Primitives;
+using System.Text;
 using static System.Net.WebRequestMethods;
 
 namespace IdentityServer.AuthServer.Configuration.Constants
@@ -14,7 +15,8 @@ namespace IdentityServer.AuthServer.Configuration.Constants
     public enum ApplicationCode
     {
         Client2Mvc,
-        Client3Mvc
+        Client3Mvc,
+        SpaAngular
     }
     public class ApplicationSettings
     {
@@ -22,6 +24,7 @@ namespace IdentityServer.AuthServer.Configuration.Constants
         {
             public const string CLIENT_2_MVC = "https://localhost:7266/";
             public const string CLIENT_3_MVC = "https://localhost:7290/";
+            public const string SPA_ANGULAR = "http://localhost:4200/";
         }
     }
     public class GetEndpoint
@@ -40,10 +43,13 @@ namespace IdentityServer.AuthServer.Configuration.Constants
                     case ApplicationCode.Client3Mvc:
                         endpoint.Append(ApplicationSettings.Address.CLIENT_3_MVC);
                         break;
+                    case ApplicationCode.SpaAngular:
+                        endpoint.Append(ApplicationSettings.Address.SPA_ANGULAR);
+                        break;
                     default:
                         throw new ArgumentException("Application endpoint could not found!");
                 }
-                endpoint.Append(IdentityServerEndpoints.Endpoint.SIGN_IN_OIDC);
+                endpoint.Append(applicationCode == ApplicationCode.SpaAngular ? "callback": IdentityServerEndpoints.Endpoint.SIGN_IN_OIDC);
                 list.Add(endpoint.ToString());
                 endpoint.Clear();
             }
