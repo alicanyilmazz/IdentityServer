@@ -1,0 +1,50 @@
+﻿@model IdentityServer.Client3.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "~/Pages/_Layout.cshtml";
+}
+
+<h4>Login Form</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Index">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <div class="row" style="margin:8px;">
+                    <div class="col-md-2"><label asp-for="Email" class="control-label"></label></div>
+                    <div class="col-md-10">
+                        <input asp-for="Email" class="form-control" style="background-color:lightslategrey;" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>             
+            </div>
+            <div class="form-group">
+                <div class="row" style="margin:8px;">
+                    <div class="col-md-2">
+                        <label asp-for="Password" class="control-label"></label>
+                    </div>
+                    <div class="col-md-10">
+                        <input asp-for="Password" class="form-control" style="background-color:lightslategrey;" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

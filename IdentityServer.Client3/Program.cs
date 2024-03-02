@@ -10,8 +10,8 @@ builder.Services.AddRazorPages();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.Configure<CookieConfiguration>(builder.Configuration.GetSection(InitializeSetting.COOKIE_CONFIGURATIONS));
-builder.AddCustomCookieAuthentication(cookieConfiguration: builder.Configuration.GetSection(InitializeSetting.COOKIE_CONFIGURATIONS).Get<CookieConfiguration>());
+builder.Services.Configure<BasicCookieConfiguration>(builder.Configuration.GetSection(InitializeSetting.COOKIE_CONFIGURATIONS));
+builder.AddCustomCookieAuthenticationWithoutOpenIdConnect(cookieConfiguration: builder.Configuration.GetSection(InitializeSetting.COOKIE_CONFIGURATIONS).Get<BasicCookieConfiguration>());
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IApiResourcesHttpClient, ApiResourcesHttpClient>();
 var app = builder.Build();

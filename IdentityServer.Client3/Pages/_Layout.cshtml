@@ -39,7 +39,7 @@
                     <a class="nav-link" href="#">Contact</a>
                     @if (!User.Identity.IsAuthenticated)
                     {
-                        <a asp-controller="Home" asp-action="SignIn" class="nav-link">LogIn</a>
+                        <a asp-controller="Login" asp-action="Index" class="nav-link">LogIn</a>
                     }
                     else
                     {

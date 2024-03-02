@@ -27,4 +27,16 @@ namespace IdentityServer.SharedLibrary.Configuration.CookieConfigurations
         public string? ClaimType { get; set; }
         public string? JsonKey { get; set; }
     }
+
+    public class BasicCookieConfiguration
+    {
+        public string? DefaultScheme { get; set; }
+        public string? AccessDeniedPath { get; set; }
+        /// <summary>
+        /// If the user is not a member, it is used to determine the page that only members can see.
+        /// </summary>
+        public string? LoginPath { get; set; }
+        public string? LogoutPath { get; set; }
+    }
+
 }

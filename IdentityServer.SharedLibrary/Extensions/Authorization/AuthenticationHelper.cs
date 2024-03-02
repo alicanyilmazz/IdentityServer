@@ -72,5 +72,22 @@ namespace IdentityServer.SharedLibrary.Extensions.Authorization
                 }
             });
         }
+        /// <summary>
+        /// This method adding Cookie Authentication Validation
+        /// </summary>
+        /// <param name="builder"></param>
+        /// <param name="cookieConfiguration">Provides Cookie customization properties</param>
+        public static void AddCustomCookieAuthenticationWithoutOpenIdConnect(this WebApplicationBuilder builder, BasicCookieConfiguration cookieConfiguration)
+        {
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = cookieConfiguration.DefaultScheme;
+            }).AddCookie(cookieConfiguration.DefaultScheme, options =>
+            {
+                options.AccessDeniedPath = cookieConfiguration.AccessDeniedPath;
+                options.LoginPath = cookieConfiguration.LoginPath;
+                options.LogoutPath = cookieConfiguration.LogoutPath;
+            });
+        }
     }
 }
