@@ -18,6 +18,7 @@ builder.Services.AddIdentityServer()
     .AddInMemoryIdentityResources(IdentityServer.AuthServer.Config.GetIdentityResources())
     //.AddTestUsers(IdentityServer.AuthServer.Config.GetUsers().ToList())
     .AddProfileService<CustomProfileService>()
+    .AddResourceOwnerValidator<ResorceOwnerPasswordValidator>()
     .AddDeveloperSigningCredential();
 builder.Services.AddDbContext<CustomDbContext>(x =>
 {
