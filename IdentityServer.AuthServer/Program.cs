@@ -43,12 +43,12 @@ builder.Services.AddIdentityServer()
 
 var app = builder.Build();
 
-//using (var serviceScope = app.Services.CreateScope())
-//{
-//    var services = serviceScope.ServiceProvider;
-//    var context = services.GetRequiredService<ConfigurationDbContext>();
-//    IdentityServerSeedData.Seeds(context);
-//}
+using (var serviceScope = app.Services.CreateScope())
+{
+    var services = serviceScope.ServiceProvider;
+    var context = services.GetRequiredService<ConfigurationDbContext>();
+    IdentityServerSeedData.Seeds(context);
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

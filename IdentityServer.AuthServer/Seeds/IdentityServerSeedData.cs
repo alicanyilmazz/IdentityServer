@@ -1,4 +1,5 @@
 ﻿using IdentityServer.AuthServer.Configuration;
+using IdentityServer.AuthServer.Models;
 using IdentityServer4.EntityFramework.DbContexts;
 using IdentityServer4.EntityFramework.Entities;
 using IdentityServer4.EntityFramework.Mappers;
@@ -10,31 +11,31 @@ namespace IdentityServer.AuthServer.Seeds
     {
         public static void Seeds(ConfigurationDbContext context)
         {
-            var data = Generator.GetClients();
+            ConfigurationDbContextInitializer configurationManager = new ConfigurationDbContextInitializer();
             if (!context.Clients.Any())
             {
-                foreach (var client in data.Clients)
+                foreach (var client in configurationManager.GetClient())
                 {
                     context.Clients.Add(client);
                 }
             }
             if (!context.ApiResources.Any())
             {
-                foreach (var apiResource in data.ApiResources)
+                foreach (var apiResource in configurationManager.GetApiResources())
                 {
                     context.ApiResources.Add(apiResource);
                 }
             }
             if (!context.ApiScopes.Any())
             {
-                foreach (var apiScope in data.ApiScopes)
+                foreach (var apiScope in configurationManager.GetApiScopes())
                 {
                     context.ApiScopes.Add(apiScope);
                 }
             }
             if (!context.IdentityResources.Any())
             {
-                data.IdentityResources.ToList().ForEach(identityResource =>
+                configurationManager.GettIdentityResources().ToList().ForEach(identityResource =>
                 {
                     context.IdentityResources.Add(identityResource);
                 });
