@@ -29,6 +29,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.SharedLibrar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.Client3", "IdentityServer.Client3\IdentityServer.Client3.csproj", "{457B0016-7274-4101-8ABC-733ED05F58C6}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.AspNetCoreIdentity", "IdentityServer.AspNetCoreIdentity\IdentityServer.AspNetCoreIdentity.csproj", "{9DDAFB0F-4C0E-40FC-843E-D6FE3DDAC018}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{457B0016-7274-4101-8ABC-733ED05F58C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{457B0016-7274-4101-8ABC-733ED05F58C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{457B0016-7274-4101-8ABC-733ED05F58C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DDAFB0F-4C0E-40FC-843E-D6FE3DDAC018}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DDAFB0F-4C0E-40FC-843E-D6FE3DDAC018}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DDAFB0F-4C0E-40FC-843E-D6FE3DDAC018}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DDAFB0F-4C0E-40FC-843E-D6FE3DDAC018}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
