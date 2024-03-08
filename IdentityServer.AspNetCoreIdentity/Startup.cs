@@ -49,6 +49,7 @@ namespace IdentityServer.AspNetCoreIdentity
             })
                 .AddInMemoryIdentityResources(Config.GetIdentityResources())
                 .AddInMemoryApiScopes(Config.GetApiScopes())
+                .AddInMemoryApiResources(Config.GetApiResources())
                 .AddInMemoryClients(Config.GetClients())
                 .AddAspNetIdentity<ApplicationUser>();
 
