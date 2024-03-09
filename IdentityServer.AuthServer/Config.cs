@@ -84,6 +84,19 @@ namespace IdentityServer.AuthServer
                    RefreshTokenExpiration = TokenExpiration.Absolute,
                    AbsoluteRefreshTokenLifetime = (int)(DateTime.Now.AddDays(60)-DateTime.Now).TotalSeconds,
                    RequireConsent = true,
+               },
+               new Client()
+               {
+                   ClientId = "Client4MVC",
+                   ClientName = "Client4 MVC App",
+                   ClientSecrets = new[] {new Secret("secret".Sha256())},
+                   AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
+                   AllowedScopes = {IdentityServerConstants.StandardScopes.OpenId, IdentityServerConstants.StandardScopes.Profile, "api1.read","api2.read", IdentityServerConstants.StandardScopes.OfflineAccess,"CountryAndCity","Roles"},
+                   AccessTokenLifetime = 2*60*60,
+                   AllowOfflineAccess = true,
+                   RefreshTokenUsage = TokenUsage.OneTimeOnly,
+                   RefreshTokenExpiration = TokenExpiration.Absolute,
+                   AbsoluteRefreshTokenLifetime = (int)(DateTime.Now.AddDays(60)-DateTime.Now).TotalSeconds,
                }
             };
         }
