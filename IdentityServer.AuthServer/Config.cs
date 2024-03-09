@@ -14,6 +14,7 @@ namespace IdentityServer.AuthServer
             {
                 new ApiResource("resource_api1"){Scopes={"api1.read","api1.write","api1.update"},ApiSecrets = new[]{new Secret("secretapi1".Sha256())}},
                 new ApiResource("resource_api2"){Scopes={"api2.read","api2.write","api2.update"},ApiSecrets = new[]{new Secret("secretapi2".Sha256())}},
+                new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
             };
         }
 
@@ -26,7 +27,8 @@ namespace IdentityServer.AuthServer
                 new ApiScope("api1.update","Update permission API1."),
                 new ApiScope("api2.read","Read permission API2."),
                 new ApiScope("api2.write","Write permission API2."),
-                new ApiScope("api2.update","Update permission API2.")
+                new ApiScope("api2.update","Update permission API2."),
+                new ApiScope(IdentityServerConstants.LocalApi.ScopeName)
             };
         }
         public static IEnumerable<Client> GetClients()
