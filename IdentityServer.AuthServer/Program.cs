@@ -1,9 +1,29 @@
+using IdentityServer.SharedLibrary.Common.Constants.InitializeSettings;
+using Microsoft.EntityFrameworkCore;
+using System.Reflection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+var assemblyName = typeof(Program).GetTypeInfo().Assembly.GetName().Name;
 builder.Services.AddIdentityServer()
+    .AddConfigurationStore(options =>
+    {
+        options.ConfigureDbContext = c => c.UseSqlServer(builder.Configuration.GetConnectionString(InitializeSetting.SQL_CONFIGURATION), sqlOptions =>
+        {
+            sqlOptions.MigrationsAssembly(assemblyName);
+            //sqlOptions.MigrationsAssembly(Assembly.GetAssembly(typeof(ConfigurationDbContext)).GetName().Name);
+        });
+
+    }).AddOperationalStore(options =>
+    {
+        options.ConfigureDbContext = c => c.UseSqlServer(builder.Configuration.GetConnectionString(InitializeSetting.SQL_CONFIGURATION), sqlOptions =>
+        {
+            sqlOptions.MigrationsAssembly(assemblyName);
+            //sqlOptions.MigrationsAssembly(Assembly.GetAssembly(typeof(PersistedGrantDbContext)).GetName().Name);
+        });
+    })
     .AddInMemoryApiResources(IdentityServer.AuthServer.Config.GetApiResources())
     .AddInMemoryApiScopes(IdentityServer.AuthServer.Config.GetApiScopes())
     .AddInMemoryClients(IdentityServer.AuthServer.Config.GetClients())
