@@ -1,4 +1,6 @@
+using IdentityServer.AuthServer.Seeds;
 using IdentityServer.SharedLibrary.Common.Constants.InitializeSettings;
+using IdentityServer4.EntityFramework.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -24,15 +26,21 @@ builder.Services.AddIdentityServer()
             //sqlOptions.MigrationsAssembly(Assembly.GetAssembly(typeof(PersistedGrantDbContext)).GetName().Name);
         });
     })
-    .AddInMemoryApiResources(IdentityServer.AuthServer.Config.GetApiResources())
-    .AddInMemoryApiScopes(IdentityServer.AuthServer.Config.GetApiScopes())
-    .AddInMemoryClients(IdentityServer.AuthServer.Config.GetClients())
-    .AddInMemoryIdentityResources(IdentityServer.AuthServer.Config.GetIdentityResources())
-    .AddTestUsers(IdentityServer.AuthServer.Config.GetUsers().ToList())
+    //.AddInMemoryApiResources(IdentityServer.AuthServer.Config.GetApiResources())
+    //.AddInMemoryApiScopes(IdentityServer.AuthServer.Config.GetApiScopes())
+    //.AddInMemoryClients(IdentityServer.AuthServer.Config.GetClients())
+    //.AddInMemoryIdentityResources(IdentityServer.AuthServer.Config.GetIdentityResources())
+    //.AddTestUsers(IdentityServer.AuthServer.Config.GetUsers().ToList())
     .AddDeveloperSigningCredential();
 
 var app = builder.Build();
 
+using (var serviceScope = app.Services.CreateScope())
+{
+    var services = serviceScope.ServiceProvider;
+    var context = services.GetRequiredService<ConfigurationDbContext>();
+    IdentityServerSeedData.Seeds(context);
+}
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
