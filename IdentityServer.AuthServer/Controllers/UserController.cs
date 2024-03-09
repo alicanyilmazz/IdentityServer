@@ -7,13 +7,13 @@ namespace IdentityServer.AuthServer.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    [Authorize(LocalApi.ScopeName)]
+    [Authorize(LocalApi.PolicyName)]
     public class UserController : ControllerBase
     {
-        //[HttpPost]
-        //public IActionResult SignUp()
-        //{
-
-        //}
+        [HttpPost]
+        public IActionResult SignUp()
+        {
+            return Ok();
+        }
     }
 }
