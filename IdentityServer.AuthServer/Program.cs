@@ -27,11 +27,11 @@ builder.Services.AddIdentityServer()
             //sqlOptions.MigrationsAssembly(Assembly.GetAssembly(typeof(PersistedGrantDbContext)).GetName().Name);
         });
     })
-    //.AddInMemoryApiResources(IdentityServer.AuthServer.Config.GetApiResources())
-    //.AddInMemoryApiScopes(IdentityServer.AuthServer.Config.GetApiScopes())
-    //.AddInMemoryClients(IdentityServer.AuthServer.Config.GetClients())
-    //.AddInMemoryIdentityResources(IdentityServer.AuthServer.Config.GetIdentityResources())
-    //.AddTestUsers(IdentityServer.AuthServer.Config.GetUsers().ToList())
+    .AddInMemoryApiResources(IdentityServer.AuthServer.Config.GetApiResources())
+    .AddInMemoryApiScopes(IdentityServer.AuthServer.Config.GetApiScopes())
+    .AddInMemoryClients(IdentityServer.AuthServer.Config.GetClients())
+    .AddInMemoryIdentityResources(IdentityServer.AuthServer.Config.GetIdentityResources())
+    .AddTestUsers(IdentityServer.AuthServer.Config.GetUsers().ToList())
     .AddDeveloperSigningCredential();
 
 var app = builder.Build();
