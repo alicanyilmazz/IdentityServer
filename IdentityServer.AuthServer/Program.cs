@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 var assemblyName = typeof(Program).GetTypeInfo().Assembly.GetName().Name;
+builder.Services.AddLocalApiAuthentication();
 builder.Services.AddIdentityServer()
     .AddConfigurationStore(options =>
     {
