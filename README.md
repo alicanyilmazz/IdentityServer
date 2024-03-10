@@ -18,10 +18,10 @@ When providing examples of these flows, we delve into:
 - Utilizing EntityFramework to persist `ApiScope`, `ApiResource`, `IdentityResources`, and `Client` information in a database.
 - Integrating IdentityServer4 with a custom-built membership system.
 - Integrating IdentityServer4 with ASP.NET Core Identity membership system.
-- Configuring a client application for our SPA Angular application, including the setup of a client and PKCE settings in the `SinglePageApplication` branch.
+- Configuring a client application for our SPA Angular application, including the setup of a client and `PKCE` settings in the `SinglePageApplication` branch.
 - Utilizing various endpoints such as `Authorize`, `Token`, `Introspection`, and `Discovery` endpoints using IdentityModel.
 - Demonstrating both Cookie and Token-based Authorization.
-- Implementing Claim-based Authorization, Policy-based Authorization, and Role-based Authorization with code examples.
+- Implementing `Claim-based Authorization`, `Policy-based Authorization`, and `Role-based` Authorization with code examples.
 
 ## Project Structure
 
