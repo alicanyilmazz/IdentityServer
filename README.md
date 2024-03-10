@@ -52,12 +52,14 @@ https://github.com/alicanyilmazz/IdentityServer/assets/49749125/cf88e01b-4b76-4d
 [IDENTITYSERVER4.postman_collection.json](https://github.com/alicanyilmazz/IdentityServer/files/14551549/IDENTITYSERVER4.postman_collection.json)
 
 ###  Here are some resources you can use to study OAuth 2.0 and OpenID Connect:
-https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.1
-https://oauth.net/2/grant-types/
-https://oauth.net/2/grant-types/authorization-code/
-https://oauth.net/videos/
 
-https://identityserver4.readthedocs.io/en/latest/index.html
+`https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.1`
+
+`https://oauth.net/2/grant-types/`
+
+`https://oauth.net/videos/`
+
+`https://identityserver4.readthedocs.io/en/latest/index.html`
 
 `I highly recommend reading the document as it contains valuable information on OAuth 2.0 and OpenID Connect implemented by IdentityServer and Asp Net Core Identity. Taking notes while reading will help you grasp the concepts more effectively.`
 
