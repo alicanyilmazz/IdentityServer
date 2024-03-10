@@ -63,4 +63,4 @@ https://github.com/alicanyilmazz/IdentityServer/assets/49749125/cf88e01b-4b76-4d
 
 `I highly recommend reading the document as it contains valuable information on OAuth 2.0 and OpenID Connect implemented by IdentityServer and Asp Net Core Identity. Taking notes while reading will help you grasp the concepts more effectively.`
 
-![image](https://github.com/alicanyilmazz/IdentityServer/assets/49749125/4ee90962-376d-44de-bc53-7a1e9ca63e73)
+![image](https://github.com/alicanyilmazz/IdentityServer/assets/49749125/f8c92360-381d-40b6-950b-221272817cf8)
