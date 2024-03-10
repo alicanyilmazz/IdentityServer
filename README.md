@@ -30,9 +30,16 @@ The repository includes two API projects, four client applications, an Authoriza
 Feel free to explore the branches to learn more about IdentityServer4 and its usage in various scenarios.
 
 
+https://github.com/alicanyilmazz/IdentityServer/assets/49749125/0e37c05e-c2a5-40b1-8c49-35e1f086de86
 
 https://github.com/alicanyilmazz/IdentityServer/assets/49749125/9256ade5-9719-481c-9a56-1a328398acc1
 
 https://github.com/alicanyilmazz/IdentityServer/assets/49749125/ff35bca6-28b9-40b1-a078-8bc0cdc5391c
 
 https://github.com/alicanyilmazz/IdentityServer/assets/49749125/4ffb2574-3eb0-46fa-a5d8-207b92e63ae3
+
+https://github.com/alicanyilmazz/IdentityServer/assets/49749125/af608f51-5026-467a-a802-ffd3dae411b8
+
+https://github.com/alicanyilmazz/IdentityServer/assets/49749125/cf88e01b-4b76-4d82-85eb-6468bf391905
+
+![AspNetCoreIdentity](https://github.com/alicanyilmazz/IdentityServer/assets/49749125/fcd55edb-efd5-42f3-8978-42a7ea1983cd)
