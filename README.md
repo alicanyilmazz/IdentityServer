@@ -1,6 +1,6 @@
 # IdentityServer4 Sample Repository
 
-This repository is prepared to exemplify how to use IdentityServer4 and its various flow types. It contains 6 branches, each focusing on different aspects.
+This repository is prepared to exemplify how to use IdentityServer4 and its various flow types. It contains `6 branches`, `each focusing on different aspects`.
 ## Overview of Flows
 
 - **`Client Credential Grant`**
