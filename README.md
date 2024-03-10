@@ -29,6 +29,7 @@ The repository includes two API projects, four client applications, an Authoriza
 
 Feel free to explore the branches to learn more about IdentityServer4 and its usage in various scenarios.
 
+![image](https://github.com/alicanyilmazz/IdentityServer/assets/49749125/9b516351-801e-4d35-bfe0-d31ff6e98b51)
 
 https://github.com/alicanyilmazz/IdentityServer/assets/49749125/0e37c05e-c2a5-40b1-8c49-35e1f086de86
 
