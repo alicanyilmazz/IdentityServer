@@ -10,18 +10,18 @@
 
 <table class="table table-bordered"> 
     <thead>
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
+        <tr style="color:goldenrod">
+            <th style="color:goldenrod">Name</th>
+            <th style="color:goldenrod">Price</th>
         </tr>
 
     </thead>
     <tbody>
         @foreach (var product in Model.Data)
         {
-            <tr>
-                <th>@product.Name</th>
-                <th>@product.Price</th>
+            <tr style="color:bisque">
+                <th style="color:bisque">@product.Name</th>
+                <th style="color:bisque">@product.Price</th>
             </tr>
         }
     </tbody>
