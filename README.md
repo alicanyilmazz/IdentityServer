@@ -37,6 +37,8 @@ https://github.com/alicanyilmazz/IdentityServer/assets/49749125/0e37c05e-c2a5-40
 
 https://github.com/alicanyilmazz/IdentityServer/assets/49749125/9256ade5-9719-481c-9a56-1a328398acc1
 
+![image](https://github.com/alicanyilmazz/IdentityServer/assets/49749125/4ee90962-376d-44de-bc53-7a1e9ca63e73)
+
 https://github.com/alicanyilmazz/IdentityServer/assets/49749125/ff35bca6-28b9-40b1-a078-8bc0cdc5391c
 
 https://github.com/alicanyilmazz/IdentityServer/assets/49749125/4ffb2574-3eb0-46fa-a5d8-207b92e63ae3
@@ -58,3 +60,5 @@ https://oauth.net/2/grant-types/authorization-code/
 https://oauth.net/videos/
 
 https://identityserver4.readthedocs.io/en/latest/index.html
+
+I highly recommend reading the document as it contains valuable information on OAuth 2.0 and OpenID Connect implemented by IdentityServer and Asp Net Core Identity. Taking notes while reading will help you grasp the concepts more effectively.
