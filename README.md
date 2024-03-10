@@ -8,7 +8,7 @@ This repository is prepared to exemplify how to use IdentityServer4 and its vari
 - **Authorization Code Grant**
 - **Hybrid Grant**
 - **Implicit Grant**
-- **Resource Owner Credential Grant** (- **Resource Owner Password And Client Credentials**)
+- **Resource Owner Credential Grant** (**Resource Owner Password And Client Credentials**)
 
 
 ## Topics Covered
