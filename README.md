@@ -44,3 +44,7 @@ https://github.com/alicanyilmazz/IdentityServer/assets/49749125/af608f51-5026-46
 https://github.com/alicanyilmazz/IdentityServer/assets/49749125/cf88e01b-4b76-4d82-85eb-6468bf391905
 
 ![AspNetCoreIdentity](https://github.com/alicanyilmazz/IdentityServer/assets/49749125/fcd55edb-efd5-42f3-8978-42a7ea1983cd)
+
+### SAMPLE POSTMAN COLLECTION
+
+[IDENTITYSERVER4.postman_collection.json](https://github.com/alicanyilmazz/IdentityServer/files/14551549/IDENTITYSERVER4.postman_collection.json)
