@@ -1,12 +1,12 @@
 # IdentityServer4 Sample Repository
 
 This repository is prepared to exemplify how to use IdentityServer4 and its various flow types. It contains 6 branches, each focusing on different aspects.
-- <span style="color:red">Client Credential Grant</span>
-- <span style="color:blue">Authorization Code Grant</span>
-- <span style="color:green">Hybrid Grant</span>
-- <span style="color:orange">Implicit Grant</span>
-- <span style="color:purple">Resource Owner Credential Grant</span>
-- <span style="color:brown">Resource Owner Password And Client Credentials</span>
+- <font color="red">Client Credential Grant</font>
+- <font color="blue">Authorization Code Grant</font>
+- <font color="green">Hybrid Grant</font>
+- <font color="orange">Implicit Grant</font>
+- <font color="purple">Resource Owner Credential Grant</font>
+- <font color="brown">Resource Owner Password And Client Credentials</font>
 ## Overview of Flows
 
 - **Client Credential Grant**
